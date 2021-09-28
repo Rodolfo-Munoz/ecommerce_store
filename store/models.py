@@ -13,6 +13,12 @@ class Promotion(models.Model):
 
 class Collection(models.Model):
     title = models.CharField(max_length=255)
+    # we type 'Product' to solve the circular dependency
+    #  the related name '+' cancels the creation of the reverse relationship in the Product class
+    # as the name "collection" will clash with the existing collection field. Other option
+    # is to provide an alternative name.
+    featured_product = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, related_name='+')
+
 
 
 class Product(models.Model):
@@ -106,5 +112,5 @@ class Address(models.Model):
         Customer, on_delete=models.CASCADE, )
 
 
-class Item
+
 
