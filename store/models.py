@@ -111,6 +111,7 @@ class CartItem(models.Model):
 class Address(models.Model):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
+    zip = models.CharField(max_length=255)
     # To define a one-to-many relationship we use a Foreingkey field type.
     # We don't need the pk as we allow now multiple values per customer
     customer = models.ForeignKey(
